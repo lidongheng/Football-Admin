@@ -4,7 +4,7 @@ import Home from './views/Home.vue'
 
 Vue.use(Router)
 
-export default new Router({
+const router:any = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -12,6 +12,27 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('@/views/Login/Login.vue')
+    },
+    {
+      path: '/password',
+      name: 'password',
+      component: () => import('@/views/Login/Password.vue')
     }
   ]
 })
+
+router.beforeEach((to:any, from:any, next:any) => {
+  const isLogin = localStorage.Token
+  if (to.path === '/login' || to.path === '/password') {
+    next()
+  } else {
+    isLogin ? next() : next('/login')
+  }
+})
+
+export default router
