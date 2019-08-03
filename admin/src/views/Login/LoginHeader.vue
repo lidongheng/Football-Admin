@@ -20,10 +20,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
+import { State, Getter, Mutation, Action } from 'vuex-class'
 @Component({
   components: {}
 })
-export default class LayoutHeader extends Vue {
+export default class LoginHeader extends Vue {
 
 }
 </script>

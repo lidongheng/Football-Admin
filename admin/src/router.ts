@@ -39,7 +39,7 @@ export const asyncRouterMap = [
       {
         path: '/tableData',
         name: 'tableData',
-        meta: { title: '表格管理', icon: 'fa fa-table' },
+        meta: { title: '球员管理', icon: 'fa fa-table' },
         component: () => import('@/views/DataManage/TableData.vue')
       },
       {

@@ -7,7 +7,7 @@
           <span class="title">米修在线</span>
         </div>
       </el-col>
-      <el-col :xs="14" :sm="12" :md="10" :lg="8" xl="6">
+      <el-col :xs="14" :sm="12" :md="10" :lg="8" :xl="6">
         <el-dropdown @command="userCommand" class="system-user">
           <span class="userinfo-inner">
             <img :src="require('@/assets/'+getUser.key+'.jpg')" alt=""/>
@@ -37,6 +37,9 @@ export default class LayoutHeader extends Vue {
     if (command === 'logout') {
       localStorage.removeItem('Token')
       this.$router.replace('/login')
+    }
+    if (command === 'usercenter') {
+      this.$router.push('/user')
     }
   }
 }
