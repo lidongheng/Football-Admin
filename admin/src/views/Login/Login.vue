@@ -34,11 +34,13 @@
 
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator'
+import { State, Getter, Mutation, Action } from 'vuex-class'
 import LoginHeader from './LoginHeader.vue'
 @Component({
   components: { LoginHeader }
 })
 export default class Login extends Vue {
+  @Action('setUser') setUser: any
   @Provide() isLogin:boolean = false
   @Provide() ruleForm: {
     email: String;
@@ -68,6 +70,8 @@ export default class Login extends Vue {
             this.isLogin = false
             console.log(res.data)
             localStorage.setItem('Token', res.data.token)
+            this.setUser(res.data.token)
+            this.$router.push('/')
           })
           .catch((err: any) => {
             this.isLogin = false
