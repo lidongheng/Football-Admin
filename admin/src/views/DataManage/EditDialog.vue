@@ -79,7 +79,7 @@ export default class EditDialog extends Vue {
     position: [{ required: true, message: '请输入球员常用位置', trigger: 'blur' }],
     player: [{ required: true, message: '请输入球员姓名', trigger: 'blur' }]
   }
-  submitForm (formName: any) {
+  submitForm (formName: string) {
     // @ts-ignore
     this.$refs[formName].validate((valid: boolean) => {
       if (valid) {
