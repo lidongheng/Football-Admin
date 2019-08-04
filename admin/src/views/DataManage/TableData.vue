@@ -13,23 +13,25 @@
       <el-table-column label="特点" prop="description"></el-table-column>
       <el-table-column label="重要性" prop="importance" width="120"></el-table-column>
       <el-table-column label="操作" width="160">
-        <template>
-          <el-button size="mini">编辑</el-button>
-          <el-button size="mini" type="danger">删除</el-button>
+        <template slot-scope="scope">
+          <el-button size="mini" @click="handleEdit(scope.$index,scope.row)">编辑</el-button>
+          <el-button @click="handleDelete(scope.$index,scope.row)" size="mini" type="danger">删除</el-button>
         </template>
       </el-table-column>
     </el-table>
     <div class="pages" ref="page-box">
       <el-pagination @current-change="handleCurrentChange" :page-sizes="[10]" :page-size="pageSize" layout="total,sizes,prev,pager,next,jumper" :total="rows"></el-pagination>
     </div>
+    <EditDialog :dialogVisible="dialogVisible" @closeDialog="closeDialog" :form="formData"></EditDialog>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue, Provide } from 'vue-property-decorator'
+import EditDialog from './EditDialog.vue'
 @Component({
   components: {
-
+    EditDialog
   }
 })
 export default class TableData extends Vue {
@@ -39,6 +41,36 @@ export default class TableData extends Vue {
   @Provide() pageNow: number = 1
   @Provide() pageSize: number = 10
   @Provide() rows: number = 0
+  @Provide() dialogVisible:boolean = false
+  @Provide() formData:object = {
+    league: '',
+    club: '',
+    player: '',
+    nation: '',
+    position: '',
+    importance: '',
+    description: '',
+    clubEname: '',
+    attr: '',
+    _id: ''
+  }
+  handleEdit (index:number, row:any) {
+    this.formData = row
+    this.dialogVisible = true
+  }
+  handleDelete (index: number, row: any) {
+    (this as any).$axios.delete(`/api/players/${row._id}/`)
+      .then((res: any) => {
+        console.log(res)
+        this.tableData.splice(index, 1)
+      })
+      .catch((err: any) => {
+        console.log(err)
+      })
+  }
+  closeDialog () {
+    this.dialogVisible = false
+  }
   created () {
     this.loadData()
   }
