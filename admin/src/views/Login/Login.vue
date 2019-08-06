@@ -69,6 +69,7 @@ export default class Login extends Vue {
           .then((res: any) => {
             this.isLogin = false
             console.log(res.data)
+            this.setUser(res.data.Token)
             localStorage.setItem('Token', res.data.token)
             this.setUser(res.data.token)
             this.$router.push('/')

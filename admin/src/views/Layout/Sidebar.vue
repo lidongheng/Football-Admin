@@ -32,6 +32,9 @@ import { State, Getter, Mutation, Action } from 'vuex-class'
 })
 export default class Sidebar extends Vue {
   @Getter('routers') getRouters: any
+  created () {
+    console.log(this.getRouters)
+  }
 }
 </script>
 

@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Layout from './views/Layout/Index.vue'
+// eslint-disable-next-line camelcase
+import jwt_docode from 'jwt-decode'
+import hasPermission from './utils/hasPermission'
 
 Vue.use(Router)
 /**
@@ -51,7 +54,7 @@ export const asyncRouterMap = [
       {
         path: '/formData',
         name: 'formData',
-        meta: { title: '表单管理', icon: 'fa fa-file-text-o' },
+        meta: { title: '表单管理', icon: 'fa fa-file-text-o', roles: ['admin', 'editor'] },
         component: () => import('@/views/DataManage/FormData.vue')
       }
     ]
@@ -66,7 +69,7 @@ export const asyncRouterMap = [
       {
         path: '/accountData',
         name: 'accountData',
-        meta: { title: '账户管理', icon: 'fa fa-user-plus' },
+        meta: { title: '账户管理', icon: 'fa fa-user-plus', roles: ['admin'] },
         component: () => import('@/views/UserManage/AccountData.vue')
       }
     ]
@@ -123,7 +126,17 @@ router.beforeEach((to:any, from:any, next:any) => {
   if (to.path === '/login' || to.path === '/password') {
     next()
   } else {
-    isLogin ? next() : next('/login')
+    if (isLogin) {
+      const decoded:any = jwt_docode(localStorage.Token)
+      const { key } = decoded
+      if (hasPermission(key, to)) {
+        next()
+      } else {
+        next('/404')
+      }
+    } else {
+      next('/login')
+    }
   }
 })
 
