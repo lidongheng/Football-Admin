@@ -46,16 +46,40 @@ export const asyncRouterMap = [
         component: () => import('@/views/DataManage/TableData.vue')
       },
       {
-        path: '/chartsData',
-        name: 'chartsData',
-        meta: { title: '图表管理', icon: 'fa fa-bar-chart' },
-        component: () => import('@/views/DataManage/ChartsData.vue')
+        path: '/matchData',
+        name: 'matchData',
+        meta: { title: '比赛管理', icon: 'fa fa-table', roles: ['admin', 'editor'] },
+        component: () => import('@/views/DataManage/MatchData.vue')
+      },
+      {
+        path: '/forwardData',
+        name: 'forwardData',
+        meta: { title: '英超前瞻', icon: 'fa fa-table', roles: ['admin', 'editor'] },
+        component: () => import('@/views/DataManage/ForwardData.vue')
       },
       {
         path: '/formData',
         name: 'formData',
-        meta: { title: '表单管理', icon: 'fa fa-file-text-o', roles: ['admin', 'editor'] },
+        meta: { title: '录入球员', icon: 'fa fa-file-text-o', roles: ['admin', 'editor'] },
         component: () => import('@/views/DataManage/FormData.vue')
+      },
+      {
+        path: '/addMatch',
+        name: 'addMatch',
+        meta: { title: '增加比赛', icon: 'fa fa-file-text-o', roles: ['admin', 'editor'] },
+        component: () => import('@/views/DataManage/AddMatch.vue')
+      },
+      {
+        path: '/addForward',
+        name: 'addForward',
+        meta: { title: '编写前瞻', icon: 'fa fa-file-text-o', roles: ['admin', 'editor'] },
+        component: () => import('@/views/DataManage/AddForward.vue')
+      },
+      {
+        path: '/chartsData',
+        name: 'chartsData',
+        meta: { title: '图表管理(备用)', icon: 'fa fa-bar-chart' },
+        component: () => import('@/views/DataManage/ChartsData.vue')
       }
     ]
   },

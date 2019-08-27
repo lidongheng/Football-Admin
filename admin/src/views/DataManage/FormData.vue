@@ -46,7 +46,7 @@
         <el-input v-model="form.description" placeholer="请输入球员特点"></el-input>
       </el-form-item>
       <el-form-item>
-        <el-button @click="submitForm('ruleForm')" type="primary">创建课程</el-button>
+        <el-button @click="submitForm('ruleForm')" type="primary">增加球员</el-button>
         <el-button @click="resetForm('ruleForm')">重置</el-button>
       </el-form-item>
     </el-form>
@@ -80,10 +80,11 @@ export default class FormData extends Vue {
     // @ts-ignore
     this.$refs[formName].validate((valid: boolean) => {
       if (valid) {
-        (this as any).$axios.post(`/api/players/`)
+        (this as any).$axios.post(`/api/players/`, this.form)
           .then((res:any) => {
             console.log(res)
             this.resetForm(formName)
+            this.$message({ message: res.data.message, type: 'success' })
           })
           .catch((err:any) => {
             console.log(err)

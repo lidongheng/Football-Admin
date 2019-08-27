@@ -83,9 +83,11 @@ export default class EditDialog extends Vue {
     // @ts-ignore
     this.$refs[formName].validate((valid: boolean) => {
       if (valid) {
-        (this as any).$axios.post(`/api/players/`)
+        (this as any).$axios.put(`/api/players/${this.form._id}/`, this.form)
           .then((res:any) => {
             console.log(res)
+            this.$emit('closeDialog')
+            this.$message({ message: res.data.message, type: 'success' })
           })
           .catch((err:any) => {
             console.log(err)
