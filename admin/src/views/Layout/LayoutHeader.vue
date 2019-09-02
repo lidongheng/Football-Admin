@@ -4,7 +4,7 @@
       <el-col :xs="10" :sm="12" :md="14" :lg="16" :xl="18">
         <div class="system-info">
           <img class="logo" src="@/assets/logo.png" alt=""/>
-          <span class="title">米修在线</span>
+          <span class="title">后台管理系统</span>
         </div>
       </el-col>
       <el-col :xs="14" :sm="12" :md="10" :lg="8" :xl="6">

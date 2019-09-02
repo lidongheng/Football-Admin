@@ -1,9 +1,9 @@
 <template>
   <div class="home">
     <div class="home-body">
-      <h4 class="title">欢迎来到米修在线后台管理系统</h4>
-      <p class="des">米修在线，让每个人都有机会学习编程，更有能力选择学习想要学习的课程！</p>
-      <el-button @click="learn">进入学习</el-button>
+      <h4 class="title">欢迎来到足球后台管理系统</h4>
+      <p class="des">这是一个后台管理系统，是使用element-ui框架制作的</p>
+      <el-button @click="learn">进入管理</el-button>
     </div>
   </div>
 </template>
@@ -17,7 +17,7 @@ import { Component, Vue } from 'vue-property-decorator'
 })
 export default class Home extends Vue {
   learn ():void {
-    window.open('https://www.baidu.com/', '_blank')
+    this.$router.push({ path: '/tableData' })
   }
 }
 </script>

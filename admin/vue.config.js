@@ -1,5 +1,15 @@
+var proEnv = require('./config/pro.env')
+var devEnv = require('./config/dev.env')
+const env = process.env.NODE_ENV
+let target = ''
+if (env === 'production') {
+  target = proEnv.hostUrl
+} else {
+  target = devEnv.hostUrl
+}
+
 module.exports = {
-  baseUrl: '/',
+  publicPath: './',
   outputDir: 'dist',
   assetsDir: 'assets',
   lintOnSave: true,
@@ -11,11 +21,11 @@ module.exports = {
     hotOnly: false,
     proxy: {
       '/api': {
-        target: 'http://localhost:3500/api/',
+        target: target,
         ws: true,
         changeOrigin: true,
         pathRewrite: {
-          '^/api': ''
+          '^/api': '/'
         }
       }
     }

@@ -183,7 +183,7 @@ export default class MatchData extends Vue {
   handleDelete1 (index: number, row: any) {
     (this as any).$axios.delete(`/api/teams/match/Mancity/${row._id}`)
       .then((res:any) => {
-        this.$message({ type: 'success', message: res.data.message })
+        (this as any).$message({ type: 'success', message: res.data.message })
         this.Mancity.splice(index, 1)
       })
       .catch((err:any) => {
@@ -193,7 +193,7 @@ export default class MatchData extends Vue {
   handleDelete2 (index: number, row: any) {
     (this as any).$axios.delete(`/api/teams/match/Liverpool/${row._id}`)
       .then((res:any) => {
-        this.$message({ type: 'success', message: res.data.message })
+        (this as any).$message({ type: 'success', message: res.data.message })
         this.Liverpool.splice(index, 1)
       })
       .catch((err:any) => {
@@ -203,7 +203,7 @@ export default class MatchData extends Vue {
   handleDelete3 (index: number, row: any) {
     (this as any).$axios.delete(`/api/teams/match/TottenhamHotSpur/${row._id}`)
       .then((res:any) => {
-        this.$message({ type: 'success', message: res.data.message })
+        (this as any).$message({ type: 'success', message: res.data.message })
         this.TottenhamHotSpur.splice(index, 1)
       })
       .catch((err:any) => {
@@ -213,7 +213,7 @@ export default class MatchData extends Vue {
   handleDelete4 (index: number, row: any) {
     (this as any).$axios.delete(`/api/teams/match/Arsenal/${row._id}`)
       .then((res:any) => {
-        this.$message({ type: 'success', message: res.data.message })
+        (this as any).$message({ type: 'success', message: res.data.message })
         this.Arsenal.splice(index, 1)
       })
       .catch((err:any) => {
@@ -223,7 +223,7 @@ export default class MatchData extends Vue {
   handleDelete5 (index: number, row: any) {
     (this as any).$axios.delete(`/api/teams/match/ManUtd/${row._id}`)
       .then((res:any) => {
-        this.$message({ type: 'success', message: res.data.message })
+        (this as any).$message({ type: 'success', message: res.data.message })
         this.ManUtd.splice(index, 1)
       })
       .catch((err:any) => {
@@ -233,7 +233,7 @@ export default class MatchData extends Vue {
   handleDelete6 (index: number, row: any) {
     (this as any).$axios.delete(`/api/teams/match/Chelsea/${row._id}`)
       .then((res:any) => {
-        this.$message({ type: 'success', message: res.data.message })
+        (this as any).$message({ type: 'success', message: res.data.message })
         this.Chelsea.splice(index, 1)
       })
       .catch((err:any) => {
@@ -243,7 +243,7 @@ export default class MatchData extends Vue {
   handleDelete7 (index: number, row: any) {
     (this as any).$axios.delete(`/api/teams/match/Wolfhampton/${row._id}`)
       .then((res:any) => {
-        this.$message({ type: 'success', message: res.data.message })
+        (this as any).$message({ type: 'success', message: res.data.message })
         this.Wolfhampton.splice(index, 1)
       })
       .catch((err:any) => {
@@ -253,7 +253,7 @@ export default class MatchData extends Vue {
   handleDelete8 (index: number, row: any) {
     (this as any).$axios.delete(`/api/teams/match/Espanyol/${row._id}`)
       .then((res:any) => {
-        this.$message({ type: 'success', message: res.data.message })
+        (this as any).$message({ type: 'success', message: res.data.message })
         this.Espanyol.splice(index, 1)
       })
       .catch((err:any) => {

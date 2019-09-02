@@ -12,7 +12,7 @@
       <el-table-column label="球员" prop="player" width="160"></el-table-column>
       <el-table-column label="特点" prop="description"></el-table-column>
       <el-table-column label="重要性" prop="importance" width="120"></el-table-column>
-      <el-table-column label="操作" width="160" v-if="getUser != 'visitor'">
+      <el-table-column label="操作" width="160" v-if="getUser.key !== 'visitor'">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleEdit(scope.$index,scope.row)">编辑</el-button>
           <el-button @click="handleDelete(scope.$index,scope.row)" size="mini" type="danger">删除</el-button>

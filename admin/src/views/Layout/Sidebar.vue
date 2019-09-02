@@ -1,8 +1,8 @@
 <template>
   <el-scrollbar class="el-scrollbar">
     <el-menu class="el-menu-slide" :default-active="$router.currentRoute.path" router>
-      <template v-for="item in getRouters" v-if="item.hidden&&item.children&&item.children.length>0">
-        <el-menu-item v-if="item.children.length==1" :index="item.children[0].path" :key="item.name">
+      <template v-for="item in getRoutersFilter">
+        <el-menu-item v-if="item.children.length===1" :index="item.children[0].path" :key="item.name">
           <i v-if="item.children[0].meta.icon" :class="item.children[0].meta.icon"></i>
           <span slot="title">{{item.children[0].meta.title}}</span>
         </el-menu-item>
@@ -32,8 +32,12 @@ import { State, Getter, Mutation, Action } from 'vuex-class'
 })
 export default class Sidebar extends Vue {
   @Getter('routers') getRouters: any
-  created () {
-    console.log(this.getRouters)
+  get getRoutersFilter () {
+    return this.getRouters.filter((item:any) => {
+      if (item.hidden && item.children && item.children.length > 0) {
+        return true
+      }
+    })
   }
 }
 </script>

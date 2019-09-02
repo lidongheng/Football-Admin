@@ -12,8 +12,11 @@
       <el-form-item label="请输入邮箱" prop="email">
         <el-input v-model="account.email" placeholder="请输入邮箱"></el-input>
       </el-form-item>
+      <el-form-item label="请输入密码" prop="password">
+        <el-input type="password" v-model="account.password" placeholder="请输入密码"></el-input>
+      </el-form-item>
     </el-form>
-    <span solt="footer" class="dialog-footer">
+    <span slot="footer" class="dialog-footer">
       <el-button @click="$emit('closeDialog')">取消</el-button>
       <el-button @click="handleAdd" type="primary">确定</el-button>
     </span>
@@ -35,11 +38,13 @@ export default class AddAccount extends Vue {
     key: '',
     role: '',
     des: '',
-    username: ''
+    username: '',
+    password: ''
   }
   @Provide() rules: any = {
     username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
     email: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
+    password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
     role: [{ required: true, message: '请输入角色', trigger: 'change' }]
   }
   selectChange (select: string) {
@@ -55,10 +60,10 @@ export default class AddAccount extends Vue {
     // @ts-ignore
     this.$refs['ruleForm'].validate((valid: boolean) => {
       if (valid) {
-        (this as any).$axios.post('/api/admin/', this.account)
+        (this as any).$axios.post('/api/admin/register', this.account)
           .then((res: any) => {
-            this.$emit('update')
-            this.$message({
+            this.$emit('update');
+            (this as any).$message({
               type: 'success',
               message: res.data.message
             })

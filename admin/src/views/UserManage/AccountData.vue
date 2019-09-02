@@ -20,7 +20,7 @@
       </el-table-column>
       <el-table-column prop="des" label="描述"></el-table-column>
       <el-table-column label="操作" width="180">
-        <template slot-scope="scope" v-if="scope.row.username != 'admin'">
+        <template slot-scope="scope" v-if="scope.row.username !== 'admin'">
           <el-button size="mini" @click="handleEdit(scope.$index,scope.row)" v-if="!scope.row.edit">编辑</el-button>
           <el-button size="mini" @click="handleSave(scope.$index,scope.row)" v-else type="success">完成</el-button>
           <el-button size="mini" @click="handleDelete(scope.$index,scope.row)" type="danger">删除</el-button>
@@ -87,7 +87,7 @@ export default class AccountData extends Vue {
     row.edit = false;
     (this as any).$axios.post('/api/admin/', row)
       .then((res: any) => {
-        this.$message({
+        (this as any).$message({
           type: 'success',
           message: res.data.message
         })
@@ -107,7 +107,7 @@ export default class AccountData extends Vue {
   handleDelete (index: number, row: any) {
     (this as any).$axios.delete(`/api/admin/${row._id}/`)
       .then((res: any) => {
-        this.$message({
+        (this as any).$message({
           type: 'success',
           message: res.data.message
         })

@@ -63,7 +63,7 @@ export default class AddMatch extends Vue {
         (this as any).form.time.replace(/：/g, ':');
         (this as any).$axios.post('/api/teams/match/', this.form)
           .then((res:any) => {
-            this.$message({ type: 'success', message: res.data.message })
+            (this as any).$message({ type: 'success', message: res.data.message })
           })
           .catch((err:any) => {
             console.log(err)

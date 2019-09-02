@@ -7,7 +7,7 @@
       <el-table-column label="赔率" prop="odds" width="180"></el-table-column>
       <el-table-column label="对阵" prop="match" width="120"></el-table-column>
       <el-table-column label="前瞻" prop="forward"></el-table-column>
-      <el-table-column label="操作" width="80" v-if="getUser != 'visitor'">
+      <el-table-column label="操作" width="80" v-if="getUser !== 'visitor'">
         <template slot-scope="scope">
           <el-button @click="handleDelete(scope.$index,scope.row)" size="mini" type="danger">删除</el-button>
         </template>
@@ -47,14 +47,13 @@ export default class ForwardData extends Vue {
         this.forward = res.data.forwards
       })
       .catch((err:any) => {
-        console.log(err)
-        this.$message({ type: 'error', message: err.response.message })
+        (this as any).$message({ type: 'error', message: err.response.message })
       })
   }
   handleDelete (index: number, row: any) {
     (this as any).$axios.delete(`/api/forwards/${row._id}`)
       .then((res:any) => {
-        this.$message({ type: 'success', message: res.data.message })
+        (this as any).$message({ type: 'success', message: res.data.message })
         this.forward.splice(index, 1)
       })
       .catch((err:any) => {

@@ -46,8 +46,8 @@ export default class UserInfo extends Vue {
     (this as any).$axios.post('/api/admin/changePwd', this.userData)
       .then((res: any) => {
         console.log(res.data)
-        this.loading = false
-        this.$message({
+        this.loading = false;
+        (this as any).$message({
           message: res.data.message,
           type: 'success'
         })

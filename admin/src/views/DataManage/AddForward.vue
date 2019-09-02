@@ -44,7 +44,7 @@ export default class AddMatch extends Vue {
     time: [{ required: true, message: '请输入比赛时间', trigger: 'blur' }],
     match: [{ required: true, message: '请输入对阵信息', trigger: 'blur' }],
     odds: [{ required: true, message: '请输入赔率', trigger: 'blur' }],
-    forward: [{ required: true, message: '请输入前瞻', trigger: 'blur' }],
+    forward: [{ required: true, message: '请输入前瞻', trigger: 'blur' }]
   }
   onSubmit (formName: string) {
     // @ts-ignore
@@ -52,7 +52,7 @@ export default class AddMatch extends Vue {
       if (valid) {
         (this as any).$axios.post('/api/forwards/', this.form)
           .then((res:any) => {
-            this.$message({ type: 'success', message: res.data.message })
+            (this as any).$message({ type: 'success', message: res.data.message })
           })
           .catch((err:any) => {
             console.log(err)

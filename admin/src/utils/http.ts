@@ -25,6 +25,7 @@ service.interceptors.response.use((response: AxiosResponse) => {
         errMsg = '登录状态失效，请重新登录'
         localStorage.removeItem('Token')
         router.push('/login')
+        break
       case 403:
         errMsg = '拒绝访问'
         break

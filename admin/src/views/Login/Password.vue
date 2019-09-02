@@ -56,9 +56,8 @@ export default class Password extends Vue {
         this.loading = true;
         (this as any).$axios.post('/api/admin/findPwd', this.ruleForm)
           .then((res: any) => {
-            this.loading = false
-            console.log(res.data)
-            this.$message({
+            this.loading = false;
+            (this as any).$message({
               message: res.data.msg,
               type: 'success'
             })

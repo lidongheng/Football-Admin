@@ -86,17 +86,14 @@ export default class EditDialog extends Vue {
         (this as any).$axios.put(`/api/players/${this.form._id}/`, this.form)
           .then((res:any) => {
             console.log(res)
-            this.$emit('closeDialog')
-            this.$message({ message: res.data.message, type: 'success' })
+            this.$emit('closeDialog');
+            (this as any).$message({ message: res.data.message, type: 'success' })
           })
           .catch((err:any) => {
             console.log(err)
           })
       }
     })
-  }
-  created () {
-    console.log(this.dialogVisible, this.form);
   }
 }
 </script>

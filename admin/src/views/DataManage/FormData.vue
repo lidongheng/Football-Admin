@@ -82,9 +82,7 @@ export default class FormData extends Vue {
       if (valid) {
         (this as any).$axios.post(`/api/players/`, this.form)
           .then((res:any) => {
-            console.log(res)
-            this.resetForm(formName)
-            this.$message({ message: res.data.message, type: 'success' })
+            (this as any).$message({ message: res.data.message, type: 'success' })
           })
           .catch((err:any) => {
             console.log(err)

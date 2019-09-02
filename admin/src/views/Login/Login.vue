@@ -7,7 +7,7 @@
         </div>
         <!-- username -->
         <el-form-item prop="email">
-          <el-input type="text" v-model="ruleForm.email" auto-complete="off" placeholder="账号">
+          <el-input type="text" v-model="ruleForm.email" auto-complete="off" placeholder="邮箱">
             <i slot="prefix" class="fa fa-lock"></i>
           </el-input>
         </el-form-item>
@@ -47,8 +47,8 @@ export default class Login extends Vue {
     password:String;
     autoLogin:boolean;
   } = {
-    email: '',
-    password: '',
+    email: 'visitor@163.com',
+    password: '88888888',
     autoLogin: true
   }
   @Provide() rules = {
@@ -68,8 +68,6 @@ export default class Login extends Vue {
         (this as any).$axios.post('/api/admin/login', this.ruleForm)
           .then((res: any) => {
             this.isLogin = false
-            console.log(res.data)
-            this.setUser(res.data.Token)
             localStorage.setItem('Token', res.data.token)
             this.setUser(res.data.token)
             this.$router.push('/')
