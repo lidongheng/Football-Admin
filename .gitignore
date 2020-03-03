@@ -13,7 +13,6 @@ __pycache__/
 # Distribution / packaging
 .Python
 env/
-build/
 develop-eggs/
 dist/
 downloads/
@@ -96,7 +95,3 @@ ENV/
 
 # Rope project settings
 .ropeproject
-
-#db
-*.db
-db.*
