@@ -58,6 +58,12 @@ export const asyncRouterMap = [
         component: () => import('@/views/DataManage/ForwardData.vue')
       },
       {
+        path: '/forecastData',
+        name: 'forecastData',
+        meta: { title: '球队预言', icon: 'fa fa-table', roles: ['admin', 'editor'] },
+        component: () => import('@/views/DataManage/ForecastData.vue')
+      },
+      {
         path: '/formData',
         name: 'formData',
         meta: { title: '录入球员', icon: 'fa fa-file-text-o', roles: ['admin', 'editor'] },
