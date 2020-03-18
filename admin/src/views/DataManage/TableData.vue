@@ -3,6 +3,8 @@
     <div class="search-box">
       <el-input size="small" v-model="searchVal" placeholder="请输入球员名称"></el-input>
       <el-button size="small" type="primary" icon="el-icon-search" @click="handleSearch">搜索</el-button>
+      <el-input size="small" v-model="searchNation" placeholder="请输入国家"></el-input>
+      <el-button size="small" type="primary" icon="el-icon-search" @click="handleSearchNation">搜索</el-button>
     </div>
     <el-table :data="tableData" border style="width:100%;" :height="tHeight" class="table-box">
       <el-table-column type="index" label="序号" width="60"></el-table-column>
@@ -38,6 +40,7 @@ import { State, Getter, Mutation, Action } from 'vuex-class'
 export default class TableData extends Vue {
   @Getter('user') getUser: any;
   @Provide() searchVal:string = ''
+  @Provide() searchNation:string = ''
   @Provide() tHeight:number = document.body.offsetHeight - 270
   @Provide() tableData: any = []
   @Provide() pageNow: number = 1
@@ -90,14 +93,32 @@ export default class TableData extends Vue {
 
   handleCurrentChange (val:number):void {
     this.pageNow = val
-    this.searchVal ? this.loadSearchData() : this.loadData()
+    this.searchVal ? this.loadSearchData() : (this.searchNation ? this.loadSearchNationalPlayers() : this.loadData())
   }
   handleSearch ():void {
     this.pageNow = 1
+    this.searchNation = ''
     this.searchVal ? this.loadSearchData() : this.loadData()
+  }
+  handleSearchNation ():void {
+    this.pageNow = 1
+    this.searchVal = ''
+    this.searchNation ? this.loadSearchNationalPlayers() : this.loadData()
   }
   loadSearchData () {
     (this as any).$axios.get(`/api/players/search/${this.searchVal}/${this.pageNow}/`)
+      .then((res: any) => {
+        console.log(res.data)
+        this.tableData = res.data.players
+        this.rows = res.data.rows
+      })
+      .catch((err: any) => {
+        console.log(err)
+      })
+  }
+  loadSearchNationalPlayers () {
+    console.log(this.searchNation);
+    (this as any).$axios.get(`/api/players/searchNational/${this.searchNation}/${this.pageNow}/`)
       .then((res: any) => {
         console.log(res.data)
         this.tableData = res.data.players

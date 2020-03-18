@@ -39,6 +39,12 @@
       <el-form-item label="国家" prop="nation">
         <el-input v-model="form.nation" placeholer="请输入球员所在国家"></el-input>
       </el-form-item>
+      <el-form-item label="是否入选国家队" prop="isNationalTeam" label-width="120">
+        <el-radio-group v-model="form.isNationalTeam">
+          <el-radio label="1" name="isNationalTeam"></el-radio>
+          <el-radio label="0" name="isNationalTeam"></el-radio>
+        </el-radio-group>
+      </el-form-item>
       <el-form-item label="重要性" prop="importance">
         <el-input v-model="form.importance" placeholer="请输入球员重要性"></el-input>
       </el-form-item>
@@ -72,6 +78,7 @@ export default class EditDialog extends Vue {
     description: string;
     clubEname: string;
     attr: string;
+    isNationalTeam: string;
     _id: string;
   }
   @Provide() rules: any = {
